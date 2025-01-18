@@ -9,6 +9,7 @@ type ScreenContentProps = {
 };
 
 export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
+  console.log(title, path, children);
   return (
     <View className={styles.container}>
       <Text className={styles.title}>{title}</Text>
