@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 type InputProps = {
@@ -12,7 +12,7 @@ type InputProps = {
   onChange: (value: string) => void;
 };
 
-export default function Input({
+export default function InputPassword({
   placeholder,
   title,
   value,
@@ -21,6 +21,14 @@ export default function Input({
   see,
   error,
 }: InputProps) {
+  const [eye, setEye] = React.useState(see);
+  const [securePassword, setSecurePassword] = React.useState(secure);
+
+  const handleEye = () => {
+    setEye(!eye);
+    setSecurePassword(!securePassword);
+  };
+
   return (
     <View className={styles.inputContainer}>
       <Text className={styles.title}>{title}</Text>
@@ -31,9 +39,18 @@ export default function Input({
           value={value}
           onChangeText={onChange}
           placeholderTextColor="#C8C8C8"
-          secureTextEntry={secure}
+          secureTextEntry={securePassword}
           autoCapitalize={'none'}
         />
+        {eye ? (
+          <Pressable onPress={handleEye}>
+            <Ionicons name="eye" size={32} color="black" />
+          </Pressable>
+        ) : (
+          <Pressable onPress={handleEye}>
+            <Ionicons name="eye-off" size={32} color="black" />
+          </Pressable>
+        )}
       </View>
 
       {error && <Text className={styles.error}>{error}</Text>}
@@ -43,7 +60,7 @@ export default function Input({
 
 const styles = {
   inputContainer: `w-full bg-white p-2 rounded-[12] border-gray-200 border mt-2`,
-  contentInput: `flex-row items-center justify-between`,
+  contentInput: `flex-row items-center justify-between `,
   input: ` mt-2 text-xl`,
   title: 'ml-1 text-lg font-bold text-black ',
   placeholder: `bg-gray200 text-sm`,
