@@ -60,7 +60,7 @@ export default function InputPassword({
 
 const styles = {
   inputContainer: `w-full bg-white p-2 rounded-[12] border-gray-200 border mt-2`,
-  contentInput: `flex-row items-center justify-between `,
+  contentInput: `flex-row items-center justify-between mr-2 `,
   input: ` mt-2 text-xl`,
   title: 'ml-1 text-lg font-bold text-black ',
   placeholder: `bg-gray200 text-sm`,

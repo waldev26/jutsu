@@ -7,7 +7,7 @@ import { Button } from '~/components/Button';
 import InputPassword from '~/components/InputPassword';
 import { supabase } from '~/utils/supabase';
 
-export default function Home() {
+export default function UserCreate() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState('');
@@ -29,19 +29,6 @@ export default function Home() {
         setError('Email e/ou senha incorretos!');
         setLoading(false);
         return; // Evita continuar caso haja erro
-      }
-      console.log(data.user);
-
-      // Determine o status com base em algum critério real, se necessário
-      if (data.user) {
-        const isAdmin = data.user.email === 'waldisson@hotmail.com'; // Exemplo de validação
-        setStatus(isAdmin ? 'admin' : 'client');
-
-        if (isAdmin) {
-          router.replace('/(admin)/homeAdmin/page');
-        } else {
-          router.replace('/home/page');
-        }
       }
 
       setLoading(false);
